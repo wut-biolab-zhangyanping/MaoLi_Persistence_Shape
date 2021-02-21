@@ -1,4 +1,4 @@
-function [train_img_path, train_label, test_img_path, test_label] = getImageList()
+function [train_img_path, train_label,val_img_path, val_label, test_img_path, test_label] = getImageList()
         [train_img_list, train_y_list] = importfile('/home/zyp/MFCIS/train_and_test_file/cherry_train_file_0_not_aug.csv');
         [val_img_list, val_y_list] = importfile('/home/zyp/MFCIS/train_and_test_file/cherry_val_file_list_0.csv');
         [test_img_list, test_y_list] = importfile('/home/zyp/MFCIS/train_and_test_file/cherry_test_file_0.csv');
@@ -21,6 +21,8 @@ function [train_img_path, train_label, test_img_path, test_label] = getImageList
         end
        train_img_path = train_img_file;
        train_label = train_y;
+       val_img_path = val_img_list;
+       val_label = val_y_list;
        test_img_path = test_img_list;
        test_label = test_y_list;
 end

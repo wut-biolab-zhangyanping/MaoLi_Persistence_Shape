@@ -1,11 +1,11 @@
 
 % load dataset
-[train_img_path, train_label, test_img_path, test_label] = getImageList();
+[train_img_path, train_label,val_img_path, val_label, test_img_path, test_label] = getImageList();
 % load dataset end
 %file=dir('*.jpg'); % change the format of image here.
 clear EC
 pCnt = 20;
-img_path_list = test_img_path;
+img_path_list = val_img_path;
 delta = ceil(length(img_path_list) / pCnt);
 p_img_list = cell(pCnt, 1);
 p_img_list{1} = img_path_list(1 : delta);
@@ -21,7 +21,11 @@ parfor p=1:pCnt
     res = extract_tp_features(p_img_list{p});
     EC{p} = res;
 end
-file_name = ['EC-cherry-test','.mat'];
+% EC_Cherry = [];
+% for i = 1 : 20
+%     EC_Cherry = [EC_Cherry; EC{i}];
+% end
+file_name = ['EC-cherry-val','.mat'];
 save(string(file_name), 'EC','-v7.3');
 
 
