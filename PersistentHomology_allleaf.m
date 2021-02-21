@@ -44,8 +44,11 @@ threshold=boundlow+(-boundlow)/step:(-boundlow)/step:0;
 %file=dir('*.jpg'); % change the format of image here.
 clear EC
 img_source_path = '';
+bar = waitbar(0, 'pleas wait...');
 for k=1:length(train_img_path)
-    img_path = ['/home/zyp/MFCIS/dataset/cherry/cherry_jpg256_cultivar100/', test_img_path{k}];
+    img_path = ['/home/zyp/MFCIS/dataset/cherry/cherry_jpg256_cultivar100/', train_img_path{k}];
+    str=['progress',[num2str(k),'/',num2str(length(train_img_path))]];
+    waitbar(k/length(train_img_path), bar, str);
     I=imread(img_path); % load the image, the format .jpg can be changed
     I = getBinaryMask(I);
     h=zeros(size(I));
@@ -73,3 +76,4 @@ for k=1:length(train_img_path)
 end
 
 save EC-cherry-train_and_val.mat EC -v7.3
+close(bar);
