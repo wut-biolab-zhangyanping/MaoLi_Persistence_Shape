@@ -5,7 +5,7 @@
 %file=dir('*.jpg'); % change the format of image here.
 clear EC
 pCnt = 20;
-img_path_list = train_img_path;
+img_path_list = val_img_path;
 delta = ceil(length(img_path_list) / pCnt);
 p_img_list = cell(pCnt, 1);
 p_img_list{1} = img_path_list(1 : delta);
